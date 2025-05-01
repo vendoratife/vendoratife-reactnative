@@ -328,8 +328,10 @@ const useDashboard = () => {
   };
 
   const dataProduct = income?.chart.map((item) =>
-    Object.values(item).filter((value) => typeof value === "number")
-  ) || [[]];
+    Object.entries(item)
+      .filter(([key, value]) => key !== "date" && key !== "total" && typeof value === "number")
+      .map(([_, value]) => Number(value))
+  ) as number[][] || [[]];
 
   const chartProductData: StackedBarChartData = {
     labels: income?.chart.map((item) => item?.date) || [],

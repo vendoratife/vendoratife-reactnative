@@ -16,6 +16,7 @@ import {
   FlatList,
   Pressable,
   RefreshControl,
+  ScrollView,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -49,27 +50,33 @@ const OrderScreen = () => {
           Daftar Pesanan
         </ThemedText>
 
-        <View className="flex flex-row">
-          {sections.map((item, index) => (
-            <TouchableOpacity
-              className={`px-4 py-2 h-12 rounded-lg flex flex-col`}
-              onPress={() => onClickSection(item)}
-            >
-              <ThemedText
-                className={`${
-                  selectedSection === item ? "text-custom-1" : " text-black"
-                }`}
+        <ScrollView
+          className="flex-1 max-h-14"
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
+          <View className="flex flex-row space-x-2 px-4 py-2">
+            {sections.map((item, index) => (
+              <TouchableOpacity
+                className={`px-4 py-2 h-20 rounded-lg flex flex-col`}
+                onPress={() => onClickSection(item)}
               >
-                {item}
-              </ThemedText>
-              <View
-                className={`h-[1px] w-full ${
-                  selectedSection === item && "bg-custom-1"
-                } mt-2`}
-              />
-            </TouchableOpacity>
-          ))}
-        </View>
+                <ThemedText
+                  className={`${
+                    selectedSection === item ? "text-custom-1" : " text-black"
+                  }`}
+                >
+                  {item}
+                </ThemedText>
+                <View
+                  className={`h-[1px] w-full ${
+                    selectedSection === item && "bg-custom-1"
+                  } mt-2`}
+                />
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
 
         <FlatList
           data={data}

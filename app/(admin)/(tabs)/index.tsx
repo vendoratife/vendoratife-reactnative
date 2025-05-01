@@ -123,7 +123,7 @@ const HomeScreen = () => {
                 <View className="flex flex-col">
                   <ThemedText className="font-osemibold">Rp</ThemedText>
                   <ThemedText className="font-osemibold text-xl">
-                    {overview?.sales?.totalIncome
+                    {typeof overview?.sales?.totalIncome === "number"
                       ? formatRupiah(overview?.sales?.totalIncome, false)
                       : "Loading..."}
                   </ThemedText>
